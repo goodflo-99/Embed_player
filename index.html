@@ -1,0 +1,170 @@
+<iframe id="vimmi-player" src='https://embed-player.dev-shoprz.live/?appId=65d8c4b5b54e13d4ebac066a&store=darinasugakn62-m1vimminet.dev-shoprz.live&player=channel-embedded-player_164328&targetId=660d59aa4e22c300951951a7' frameborder='0' width='1080px' height='720px' allow="fullscreen"></iframe>
+<script>
+  ! function() {
+    var e;
+    if (window.PLAYER_MANAGER) return;
+
+    function i() {
+      window.PLAYER_MANAGER.debug && console.log("[PlayerManager]", ...arguments)
+    }
+
+    function s(e) {
+      if (!e) return !1;
+      let i = e.getBoundingClientRect(),
+        s = window.innerHeight || document.documentElement.clientHeight,
+        a = window.innerWidth || document.documentElement.clientWidth,
+        t = Math.min(i.right, a) - Math.max(i.left, 0),
+        n = Math.min(i.bottom, s) - Math.max(i.top, 0),
+        l = i.width * i.height;
+      return (t > 0 && n > 0 ? t * n : 0) >= .1 * l
+    }
+
+    function a(e, a, t = "*") {
+      let n = {
+        ...e,
+        source: "player-manager"
+      };
+      i("[iframe][sendPM]", n, a), e.isInViewport = s(a), a.contentWindow.postMessage(JSON.stringify(n), t)
+    }
+    this.debug = !0, window.PLAYER_MANAGER = this, this.activePlayer, this.instances = [];
+    let t = async () => {
+      let e = await new Promise(e => {
+        let i = 0,
+          s = () => {
+            i > 1e4 && e(!1), window.SimplePlayer ? e(!0) : (i += 200, setTimeout(s, 200))
+          };
+        window.SimplePlayer ? e(!0) : (i += 200, setTimeout(s, 200))
+      });
+      if (e) {
+        i("[simple]", "found simple player");
+        let s = e => {
+            let s = {
+              playOnlyWhenVisible: !0,
+              isUserPaused: !1,
+              player: e,
+              uuid: Math.random().toString(36).substring(7),
+              play() {
+                e.play()
+              },
+              pause() {
+                e.pause()
+              },
+              isPaused: () => e.isPaused(),
+              isInViewport: () => e.isInViewport()
+            };
+            this.instances.push(s),
+              function e(s) {
+                let a = s.player;
+                s.playOnlyWhenVisible = a.getConf().playOnlyWhenVisible, a.on("play", () => {
+                  s.playOnlyWhenVisible = a.getConf().playOnlyWhenVisible, s.isInViewport() ? (this.activePlayer && this.activePlayer !== s && this.activePlayer.pause(), this.activePlayer = s) : a.pause(), i("[simple]", "play", s)
+                }), a.on("pause", () => {
+                  s.playOnlyWhenVisible = a.getConf().playOnlyWhenVisible, this.activePlayer = null, i("[simple]", "pause", s)
+                }), a.on("timeupdate", () => {
+                  s.playOnlyWhenVisible = a.getConf().playOnlyWhenVisible, s.isPaused() || !s.playOnlyWhenVisible || s.isInViewport() || (a.pause(), this.activePlayer = null)
+                }), a.on("user:play", () => {
+                  s.playOnlyWhenVisible = a.getConf().playOnlyWhenVisible, s.isUserPaused = !1, i("[simple]", "user:play", s)
+                }), a.on("user:pause", () => {
+                  s.isUserPaused = !0, this.activePlayer = null, i("[simple]", "user:pause", s)
+                })
+              }(s), i("[simple][onPlayerBind]", e, this.instances)
+          },
+          a = e => {
+            this.instances = this.instances.filter(i => i.player !== e), i("[simple][onPlayerUnBind]", e, this.instances)
+          };
+        window.SimplePlayer.on("player:bind", e => {
+          s(e.detail)
+        }), window.SimplePlayer.on("player:unbind", e => {
+          a(e.detail)
+        }), window.SimplePlayer.instances.forEach(e => {
+          s(e)
+        })
+      } else i("[simple]", "simple player not found")
+    }, n = async () => {
+      window.addEventListener("message", e => {
+        if (e.data) {
+          let i = e.data;
+          if ("embed-player" !== i.source) return;
+          i.uuid || (l(), this.instances.forEach(e => {
+            !e._isIframeConnected && e.iframe && a({
+              action: "uuid",
+              uuid: e.uuid,
+              autoplay: e.isInViewport()
+            }, e.iframe)
+          }));
+          let s = this.instances.find(e => e.uuid === i.uuid);
+          if (s) switch (s._isIframeConnected = !0, i.event) {
+            case "user:play":
+              s.isUserPaused = !1, s._isPaused = !1;
+              break;
+            case "play":
+              s.isInViewport() ? (this.activePlayer && this.activePlayer !== s && this.activePlayer.pause(), this.activePlayer = s) : s.pause(), s._isPaused = !1;
+              break;
+            case "user:pause":
+              s.isUserPaused = !0;
+            case "pause":
+              s._isPaused = !0, this.activePlayer = null;
+              break;
+            case "timeupdate":
+              s._isPaused = i.state.paused, s.isPaused() || !s.playOnlyWhenVisible || s.isInViewport() || (s.pause(), this.activePlayer = null);
+              break;
+            case "resize-area":
+              ! function e(i, s) {
+                if ("hide" === s.playerVisible) {
+                  i.iframe.style.height = "0px";
+                  return
+                }
+                let a = s.productDrawer ? s.productDrawerHeight || 73 : 0,
+                  t = s.chat ? s.chatHeight || 200 : 0,
+                  n = i.iframe.getBoundingClientRect();
+                s.state.isVertical ? i.iframe.style.height = parseInt(n.width) * (16 / 9) + "px" : i.iframe.style.height = parseInt(n.width) * (9 / 16) + a + t + "px"
+              }(s, i)
+          }
+        }
+      }), l()
+    }, l = () => {
+      document.querySelectorAll("iframe").forEach(e => {
+        if (!this.instances.find(i => i.iframe === e)) {
+          let i = {
+            _isPaused: !0,
+            _isIframeConnected: !1,
+            playOnlyWhenVisible: !0,
+            isUserPaused: !1,
+            uuid: Math.random().toString(36).substring(7),
+            iframe: e,
+            origin: e.src.split("/").slice(0, 3).join("/"),
+            play() {
+              a({
+                action: "play",
+                uuid: i.uuid
+              }, e)
+            },
+            pause() {
+              a({
+                action: "pause",
+                uuid: i.uuid
+              }, e)
+            },
+            isPaused: () => i._isPaused,
+            isInViewport: () => s(e)
+          };
+          this.instances.push(i)
+        }
+      })
+    };
+    t(), n();
+    let r, u = (e = function e() {
+      this.instances.forEach(e => {
+        !e.playOnlyWhenVisible || e.isUserPaused || (i("[handleScroll]", e, e.isInViewport(), e.isInViewport() && e.isPaused(), !e.isPaused() && !e.isInViewport()), e.isInViewport() && e.isPaused() ? e.play() : e.isPaused() || e.isInViewport() || e.pause())
+      })
+    }, function i(...s) {
+      let a = () => {
+        clearTimeout(r), e(...s)
+      };
+      clearTimeout(r), r = setTimeout(a, 100)
+    });
+    document.addEventListener("scroll", u, {
+      passive: !0
+    })
+  }();
+
+</script>
