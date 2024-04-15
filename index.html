@@ -15,13 +15,11 @@
             color: #ffffff;
             cursor: pointer;
             display: inline-block;
-            font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica,
-                Arial, sans-serif;
-            font-size: 16px;
+            font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 18px;
             font-weight: 500;
             line-height: 2.5;
             outline: transparent;
-            padding: 1rem;
             text-align: center;
             text-decoration: none;
             transition: box-shadow 0.2s ease-in-out;
@@ -31,6 +29,8 @@
             white-space: nowrap;
             width: 12rem;
             height: 3rem;
+            align-items: center;
+            width: 100%;
         }
 
         button:not([disabled]):focus {
@@ -45,7 +45,7 @@
                 0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
         }
 
-        form {
+        div {
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -60,8 +60,8 @@
 </head>
 
 <body>
-    <form>
-        <button>
+    <div>
+        <button class="m-2">
             <a href="https://goodflo-99.github.io/Embed_player/store.html">Store embed</a>
         </button>
         <button>
@@ -79,7 +79,7 @@
         <button>
             <a href="https://goodflo-99.github.io/Embed_player/target.html">Target channel</a>
         </button>
-    </form>
+    </div>
 </body>
 
 </html>
