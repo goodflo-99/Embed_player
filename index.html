@@ -16,7 +16,7 @@
             cursor: pointer;
             display: inline-block;
             font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            font-size: 18px;
+            font-size: 18px !important;
             font-weight: 500;
             line-height: 2.5;
             outline: transparent;
@@ -30,6 +30,14 @@
             width: 12rem;
             height: 3rem;
             margin: 1.5rem !important;
+        }
+
+        @media (width <= 800px) {
+            button {
+                font-size: 45px !important;
+                width: 35rem !important;
+                height: 10rem !important;
+            }
         }
 
         button:not([disabled]):focus {
