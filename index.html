@@ -4,83 +4,37 @@
     <title>Embed Player - Main</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.ico">
-    <style>
-        body {
-            display: flex;
-            background-image: url("https://images.pexels.com/photos/20386770/pexels-photo-20386770/free-photo-of-a-photo-of-a-forest-with-fog-and-trees.jpeg");
-            background-position: center;
-        }
-        
-        a {
-            background: linear-gradient(to bottom right, #ef4765, #ff9a5a);
-            border: 0;
-            border-radius: 12px;
-            color: #ffffff;
-            cursor: pointer;
-            display: inline-block;
-            font-weight: 600;
-            line-height: 2.5;
-            outline: transparent;
-            text-align: center;
-            text-decoration: none;
-            transition: box-shadow 0.2s ease-in-out;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            white-space: nowrap;
-            margin: 1.5rem !important;
-            font-size: 25px !important;
-            width: 15rem;
-            height: 4rem;
-        }
-
-        a:not([disabled]):focus {
-            box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
-                -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
-                0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
-        }
-
-        a:not([disabled]):hover {
-            box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
-                -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
-                0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
-        }
-
-        form {
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        a {
-            text-decoration: none;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <form>
-        <a href="https://goodflo-99.github.io/Embed_player/fuchs-embed.html">Fuchs (Embed)</a>
-        <a href="https://goodflo-99.github.io/Embed_player/fuchs-widget.html">Fuchs (Widget)</a>
-        <a href="https://goodflo-99.github.io/Embed_player/funch-stars.html">Funch - Stars</a>
-        <br>
-
-        <a href="https://goodflo-99.github.io/Embed_player/carousel.html">Carousel Dev</a>
-        <a href="https://goodflo-99.github.io/Embed_player/many_widgets.html">Many widgets Dev</a>
-        
-        <br>
-        <!--<a href="https://goodflo-99.github.io/Embed_player/store.html">Store embed</a>
-        <a href="https://goodflo-99.github.io/Embed_player/home.html">Home channel</a>
-        <a href="https://goodflo-99.github.io/Embed_player/suncture.html">Suncture channel</a>
-        <a href="https://goodflo-99.github.io/Embed_player/amazon.html">Amazon channel</a>
-        <a href="https://goodflo-99.github.io/Embed_player/ebay.html">eBay channel</a>
-        <a href="https://goodflo-99.github.io/Embed_player/target.html">Target channel</a>-->
-        <a href="https://goodflo-99.github.io/Embed_player/prod_carousel.html">PROD Carousel</a>
-        <a href="https://goodflo-99.github.io/Embed_player/prod_player.html">PROD Video Mall</a>
-    </form>
+    <div class="center">
+        <section id="item1">
+            <a href="#item1" id="row">DEV</a>
+                <form id="dev">
+                    <a href="https://goodflo-99.github.io/Embed_player/dev_solo.html">Solo video</a>
+                    <a href="https://goodflo-99.github.io/Embed_player/dev_player.html">Video Mall</a>
+                    <a href="https://goodflo-99.github.io/Embed_player/dev_carousel.html">Carousel</a>
+                    <a href="https://goodflo-99.github.io/Embed_player/dev_many_widgets.html">Many widgets</a>
+                </form>
+        </section>
+        <section id="item2">
+            <a href="#item2" id="row">STG</a>
+                <form id="stg">
+                    <a href="https://goodflo-99.github.io/Embed_player/stg_solo.html">Solo video</a>
+                    <a href="https://goodflo-99.github.io/Embed_player/stg_player.html">Video Mall</a>
+                    <a href="https://goodflo-99.github.io/Embed_player/stg_carousel.html">Carousel</a>
+                </form>
+        </section>
+        <section id="item3">
+            <a href="#item3" id="row">PROD</a>
+                <form id="prod">
+                    <a href="https://goodflo-99.github.io/Embed_player/prod_solo.html">Solo video</a>
+                    <a href="https://goodflo-99.github.io/Embed_player/prod_player.html">Video Mall</a>
+                    <a href="https://goodflo-99.github.io/Embed_player/prod_carousel.html">Carousel</a>
+                </form>
+        </section>
+    </div>
 </body>
 
 </html>

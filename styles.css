@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    background-image: url("https://images.pexels.com/photos/20386770/pexels-photo-20386770/free-photo-of-a-photo-of-a-forest-with-fog-and-trees.jpeg");
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    font-family: "Rowdies", cursive;
+}
+
+form a {
+    background: linear-gradient(to bottom right, #ef4765, #ff9a5a);
+    border: 0;
+    border-radius: 12px;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 2.5;
+    outline: transparent;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    margin: 1.5rem !important;
+    font-size: 25px !important;
+    width: 15rem;
+    height: 4rem;
+}
+
+form a:not([disabled]):focus {
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+        -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+        0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+form a:not([disabled]):hover {
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+        -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+        0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center {
+  width: 350px;
+  margin: auto;
+}
+
+section {
+    padding-bottom: 1em;
+}
+
+section a#row {
+  background: linear-gradient(to bottom right, #ef4765, #ff9a5a);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 0px;
+  display: block;
+  font-size: 1.7em;
+  letter-spacing: 3px;
+  overflow: hidden;
+  border-bottom: 3px solid #aaa69d;
+}
+
+section form {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  background: transparent;
+  border-right: 3px dotted #aaa69d;
+  border-left: 3px dotted #aaa69d;
+  border-bottom: 3px solid #aaa69d;
+  color: #fff;
+  overflow: hidden;
+  letter-spacing: 2px;
+  transition: 2s;
+}
+
+section:target form {
+  height: 23em;
+  opacity: 1;
+  padding: 20px;
+}
+
+section:target form#dev {
+  height: 30em !important;
+}
