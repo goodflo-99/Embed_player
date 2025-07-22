@@ -101,3 +101,7 @@ section:target form {
 section:target form#dev {
   height: 40em !important;
 }
+
+section:target form#stg {
+  height: 27em !important;
+}
