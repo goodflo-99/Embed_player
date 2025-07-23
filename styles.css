@@ -93,15 +93,11 @@ section form {
 }
 
 section:target form {
-  height: 23em;
+  height: 27em;
   opacity: 1;
   padding: 20px;
 }
 
 section:target form#dev {
   height: 40em !important;
-}
-
-section:target form#stg {
-  height: 27em !important;
 }
